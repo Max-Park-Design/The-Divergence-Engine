@@ -1,19 +1,23 @@
-# secrets
+# Local configuration and runtime data
 .env
+.env.*
+!.env.example
 state.json
-
-# generated outputs
+demos/
 summaries/
 images/
 thermal/
 qrcodes/
 usb_pdfs/
-__pycache__/
-*.pyc
 
-# large files
-*.pdf
-*.jpg
-*.png
-*.djvu
+# Local tools, backups and logs
+backup/
+demo-backup-*/
 bin/
+*.log
+crashlog.txt
+*.bak
+*.pyc
+__pycache__/
+.venv/
+venv/

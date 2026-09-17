@@ -1,0 +1,13 @@
+[Unit]
+Description=The Divergence Engine
+After=network-online.target
+
+[Service]
+User=george
+WorkingDirectory=/home/george/Unblocker
+EnvironmentFile=/home/george/Unblocker/.env
+ExecStart=/usr/bin/python3 /home/george/Unblocker/unblocker.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
