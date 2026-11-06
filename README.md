@@ -1,62 +1,92 @@
 # The Divergence Engine
 
-An interactive installation by Max Park and Jude Pullen. Physical controls steer
-country selection, topic selection, source policy and the conceptual distance
-between a researched sentence and its accompanying image. The Jetson coordinates
-the hardware, research services, receipt printer and local web archive.
+An interactive research printer by Max Park and Jude Pullen. Its dials steer a
+country, a subject and the distance between a researched fact and its image.
+An Arduino reads the controls; Python gathers material, prints a receipt and
+creates a QR page for further reading.
 
-## Repository layout
+## Choose your build
+
+**You do not need a Jetson to build The Divergence Engine.** A Raspberry Pi 5
+can run the physical, web-connected edition at a much lower cost. Choose the
+Jetson only when you need local Granite models for USB-document retrieval and
+local QR-page questions.
+
+| | Raspberry Pi 5 — web-assisted | Jetson Orin Nano — local-AI |
+| --- | --- | --- |
+| Start here | [`docs/setup-pi.md`](docs/setup-pi.md) | [`docs/setup-jetson.md`](docs/setup-jetson.md) |
+| Run | `python3 unblocker_pi.py` | `python3 unblocker_jetson.py` |
+| Research and image search | Internet + Mistral | Internet + Mistral/Brave |
+| USB PDF path | OpenNotebook, configured with your chosen provider | Local Granite indexing and retrieval |
+| QR page | Receipt page and source links | Local Granite questions across active documents and web material |
+| Local Ollama models | Not required | Required |
+| Recommended computer | Pi 5, 64-bit OS, 8 GB RAM | Jetson Orin Nano Super, 8 GB shared RAM |
+
+The Pi route is not a slower Jetson route: it is deliberately web-assisted. It
+does not provide the Jetson edition's fast local Granite document workflow.
+Both builds still need an internet connection for normal web research and image
+retrieval.
+
+## First run
+
+1. Clone the repository and enter it.
+
+   ```bash
+   git clone https://github.com/Max-Park-Design/The-Divergence-Engine.git
+   cd The-Divergence-Engine
+   ```
+
+2. Choose **one** build above and follow its setup guide from start to finish.
+
+3. Run its harmless pre-flight check before connecting or mounting hardware.
+
+   ```bash
+   python3 scripts/check_setup.py --build pi
+   # or
+   python3 scripts/check_setup.py --build jetson
+   ```
+
+4. Launch the matching file only after the check has found your core files and
+   credentials.
+
+The controller expects the project Arduino, a serial thermal printer and the
+three OLED assets. It is not a software-only demo at present.
+
+## What is in this repository?
 
 | Path | Purpose |
 | --- | --- |
-| `unblocker.py` | Runtime controller, hardware state and research pipeline |
-| `demo_store.py` | Recorded-output validation, selection and archiving |
-| `add_demo.py` | Import a saved result into the local demo library |
+| `unblocker_pi.py` | Raspberry Pi 5, web-assisted controller; no Ollama/Granite requirement |
+| `unblocker_jetson.py` | Jetson controller with local Granite USB retrieval and local QR questions |
+| `unblocker.py` | Preserved original controller; kept for reference and existing installations |
+| `scripts/check_setup.py` | Read-only check for files, credentials and optional local services |
+| `requirements-pi.txt` | Python packages for the Pi edition |
+| `requirements-jetson.txt` | Python packages for the Jetson edition |
 | `firmware/Unblocker/Unblocker.ino` | Arduino firmware |
-| `oled_graphics/` | Runtime animation frames: softpower, overton and delta |
-| `soft_power_index.csv` | Country-selection data |
-| `hrcalc.py`, `max30102.py` | Existing pulse-sensor support modules |
-| `deploy/unblocker.service` | Systemd service example |
-| `docs/architecture.md` | Runtime organisation and maintenance notes |
+| `oled_graphics/` | Animation frames for the three rotary dials |
+| `docs/choose-your-build.md` | Plain-language comparison of the two builds |
+| `docs/hardware.md` | Physical components and connection notes |
+| `deploy/` | Systemd examples — edit the user and path before installing |
 
-## Runtime
+## Keep keys and documents private
 
-The installation uses Linux, Python, an Arduino serial connection, a serial
-thermal printer and a local OpenNotebook API at `http://localhost:5055`.
-Mistral and source/image retrieval require internet access.
+Never commit a real API key or a USB PDF. `.gitignore` excludes `.env`,
+`MISTRAL_API_KEY.txt`, `BRAVE_SEARCH_API_KEY.txt`, generated receipts and USB
+copies. Use the supplied `*.example` files as templates only.
 
-Use the Python environment already configured on the Jetson. The dependency
-inventory is in `requirements.txt`; it is not a tested installation lockfile.
-Do not upgrade packages on the working installation merely to publish this repo.
+## Documentation
 
-Set `MISTRAL_API_KEY` in the process environment. For systemd, place the value in
-`/home/george/Unblocker/.env`, readable only by its owner, and use the supplied
-service example's `EnvironmentFile` setting. `.env` is excluded from Git.
-Python does not load this file automatically.
+- [Choose your build](docs/choose-your-build.md)
+- [Set up the Raspberry Pi edition](docs/setup-pi.md)
+- [Set up the Jetson edition](docs/setup-jetson.md)
+- [Hardware notes](docs/hardware.md)
+- [Architecture and maintenance notes](docs/architecture.md)
 
-For a manual launch from the project directory:
+## Status
 
-```bash
-set -a
-. ./.env
-set +a
-python3 unblocker.py
-```
+This is an artist-led hardware project, not a general-purpose package. The
+Jetson edition is the installation build. The Raspberry Pi edition uses the
+preserved web/OpenNotebook path and is intended for a 64-bit Raspberry Pi 5;
+test your own serial ports, printer and OpenNotebook configuration before a
+public event.
 
-The service example retains the installation path `/home/george/Unblocker`.
-Review that path before using it on another machine. Preparing a source checkout
-does not install or restart the service.
-
-## Local files
-
-Recorded demos, inserted USB documents, state and generated outputs are local
-data and are not distributed here. Demo functionality is included. Import your
-own saved outputs with `python3 add_demo.py --help` and validate them with
-`python3 demo_store.py demos`. Demo replay requires a valid local demo library.
-
-Run the controller from its project directory. Some paths are relative to that
-directory and others to the source file. Keep `oled_graphics/`,
-`soft_power_index.csv` and the Python runtime files in their documented locations.
-
-QR source pages are served by the Jetson; their accessibility depends on the
-server and network remaining available.

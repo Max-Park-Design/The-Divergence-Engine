@@ -1,0 +1,13 @@
+# Shared Python packages for both supported builds.
+# This is an inventory, not a lockfile: keep a working installation unchanged
+# unless you are deliberately setting up a new machine.
+Pillow
+PyMuPDF
+mistralai
+numpy
+pyserial
+python-escpos
+pyudev
+qrcode
+requests
+

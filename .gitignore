@@ -2,6 +2,10 @@
 .env
 .env.*
 !.env.example
+!.env.pi.example
+!.env.jetson.example
+MISTRAL_API_KEY.txt
+BRAVE_SEARCH_API_KEY.txt
 state.json
 demos/
 summaries/
@@ -21,3 +25,4 @@ crashlog.txt
 __pycache__/
 .venv/
 venv/
+

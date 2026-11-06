@@ -1,0 +1,4 @@
+# Jetson / local-AI build.
+# Ollama and its models are installed separately; see docs/setup-jetson.md.
+-r requirements-common.txt
+

@@ -1,11 +1,28 @@
 # Runtime organisation
 
-`unblocker.py` owns shared hardware state and coordinates each run. It opens the
-Arduino connection during module initialisation, loads the OLED frames and starts
-background services near the end of the module. Importing it is therefore not a
-read-only operation.
+## Supported entry points
+
+| File | Build | Source and document path |
+| --- | --- | --- |
+| `unblocker_pi.py` | Raspberry Pi 5 / web-assisted | Mistral and OpenNotebook; no local Ollama requirement |
+| `unblocker_jetson.py` | Jetson Orin Nano / local-AI | Local Granite retrieval through Ollama plus the web route |
+| `unblocker.py` | Original controller | Preserved for existing installations and code reference |
+
+The two supported files are intentionally separate. The controllers have shared
+history but module-level hardware initialisation and mutable state make a casual
+import-based refactor risky. Keep shared behaviour aligned through careful,
+hardware-tested changes rather than importing one controller from the other.
+
+The controllers own shared hardware state and coordinate each run. They open
+the Arduino connection during module initialisation, load the OLED frames and
+start background services near the end of the module. Importing a controller is
+therefore not a read-only operation.
 
 ## Code navigation
+
+The function map below describes the preserved original / Pi controller. The
+Jetson edition adds local Ollama and Granite helpers around the same physical
+run flow.
 
 | Area | Main functions |
 | --- | --- |
@@ -38,3 +55,4 @@ The controller currently defines `_run_query` and `sample_across_text` twice.
 The later definitions replace the earlier bindings during normal initialisation.
 Both definitions are retained in this source release to preserve the original
 statement sequence and prompt text.
+
