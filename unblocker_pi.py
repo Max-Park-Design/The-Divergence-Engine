@@ -637,10 +637,14 @@ def serial_reader_thread():
                 continue
 
             if line.startswith("POTS:"):
-                values = line.split(":")[1:]
+                # Serial reads can occasionally join two POTS records (for
+                # example "0.POTS:"). Keep the newest complete record rather
+                # than letting a malformed float disrupt the reader thread.
+                payload = line.rsplit("POTS:", 1)[-1]
+                values = re.findall(r"-?(?:\d+(?:\.\d*)?|\.\d+)", payload)
                 if len(values) >= 8:
                     with _pot_lock:
-                        _pot_values = [float(v) for v in values]
+                        _pot_values = [float(v) for v in values[-9:]]
 
                         # motor crank on A7 (index 8): rising edge past ~4V (0.8) triggers a run
                         global _motor_last
