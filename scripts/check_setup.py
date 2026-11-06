@@ -57,7 +57,7 @@ def main() -> int:
         if not exists:
             failures.append(f"missing {relative_path}")
 
-    entrypoint = ROOT / ("unblocker_pi.py" if args.build == "pi" else "unblocker_jetson.py")
+    entrypoint = ROOT / ("unblocker_pi.py" if args.build == "pi" else "diveng.py")
     exists = entrypoint.exists()
     status(exists, entrypoint.name)
     if not exists:
