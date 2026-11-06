@@ -1,6 +1,6 @@
-# Set up the Raspberry Pi edition
+# Set up the optional Raspberry Pi edition
 
-This is the lower-cost, web-assisted build. It is designed for a **64-bit
+This is the optional lower-cost, web-assisted build. It is designed for a **64-bit
 Raspberry Pi 4B or Pi 5**. Use 8 GB RAM: a 4 GB model is not recommended for
 the controller and OpenNotebook Docker stack together. A Pi 5 gives more
 headroom for source processing and connected peripherals, but a Pi 4B with
