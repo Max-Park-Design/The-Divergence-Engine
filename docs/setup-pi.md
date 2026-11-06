@@ -1,15 +1,18 @@
 # Set up the Raspberry Pi edition
 
 This is the lower-cost, web-assisted build. It is designed for a **64-bit
-Raspberry Pi 5**. Use 8 GB RAM where possible; 4 GB may work with a light
-OpenNotebook configuration, but it is not the recommended event setup.
+Raspberry Pi 4B or Pi 5**. Use 8 GB RAM: a 4 GB model is not recommended for
+the controller and OpenNotebook Docker stack together. A Pi 5 gives more
+headroom for source processing and connected peripherals, but a Pi 4B with
+8 GB is a valid budget or existing-hardware choice. Test the complete
+installation before an event, particularly on a Pi 4B.
 
 It runs the Arduino, OLEDs, USB monitor, thermal printer, QR page and cloud
 research. It does not install or use local Granite models.
 
 ## You need
 
-- Raspberry Pi 5, 64-bit Raspberry Pi OS, wired power supply and internet.
+- Raspberry Pi 4B or Pi 5, 64-bit Raspberry Pi OS, reliable power and internet.
 - The project Arduino, its uploaded firmware and the physical controls.
 - A serial thermal printer.
 - A Mistral API key.
