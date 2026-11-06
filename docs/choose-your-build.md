@@ -1,13 +1,16 @@
 # Choose your build
 
-## Raspberry Pi 5 — web-assisted edition
+## Raspberry Pi 4B or Pi 5 — web-assisted edition
 
 Choose this if cost matters most and the installation will have a reliable
 internet connection. It runs the physical controller, receipt printer, QR page,
 Mistral research and OpenNotebook source flow. It does **not** need Ollama or
 the Granite models.
 
-- Target: 64-bit Raspberry Pi 5; 8 GB RAM recommended.
+- Target: 64-bit Raspberry Pi 4B or Pi 5; 8 GB RAM recommended.
+- A Pi 4B with 8 GB is a sensible lower-cost or existing-hardware choice. A
+  Pi 5 has more CPU, thermal and USB headroom for an event, but neither Pi
+  runs the Jetson's local Granite workflow.
 - Entry point: `unblocker_pi.py`.
 - Models: Mistral and the provider configured in OpenNotebook.
 - USB documents: handled through OpenNotebook.
@@ -28,7 +31,7 @@ and local questions on the QR page. It keeps the full web-research route too.
 
 ## Comparison
 
-| Capability | Pi 5 web-assisted | Jetson local-AI |
+| Capability | Pi 4B / 5 web-assisted | Jetson local-AI |
 | --- | --- | --- |
 | Arduino, OLEDs, dials and crank | Yes | Yes |
 | Thermal printer and QR receipt | Yes | Yes |
