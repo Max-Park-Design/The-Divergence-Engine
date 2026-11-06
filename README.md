@@ -7,12 +7,15 @@ creates a QR page for further reading.
 
 ## Choose your build
 
-**You do not need a Jetson to build The Divergence Engine.** A Raspberry Pi 5
-can run the physical, web-connected edition at a much lower cost. Choose the
+**You do not need a Jetson to build The Divergence Engine.** A 64-bit
+Raspberry Pi 4B with 8 GB RAM, or a Raspberry Pi 5, can run the physical,
+web-connected edition at a much lower cost. The Pi 5 is the safer choice when
+buying new because it has more headroom for Docker, source processing and
+multiple peripherals; it does not unlock a different AI feature. Choose the
 Jetson only when you need local Granite models for USB-document retrieval and
 local QR-page questions.
 
-| | Raspberry Pi 5 — web-assisted | Jetson Orin Nano — local-AI |
+| | Raspberry Pi 4B / 5 — web-assisted | Jetson Orin Nano — local-AI |
 | --- | --- | --- |
 | Start here | [`docs/setup-pi.md`](docs/setup-pi.md) | [`docs/setup-jetson.md`](docs/setup-jetson.md) |
 | Run | `python3 unblocker_pi.py` | `python3 unblocker_jetson.py` |
@@ -20,7 +23,7 @@ local QR-page questions.
 | USB PDF path | OpenNotebook, configured with your chosen provider | Local Granite indexing and retrieval |
 | QR page | Receipt page and source links | Local Granite questions across active documents and web material |
 | Local Ollama models | Not required | Required |
-| Recommended computer | Pi 5, 64-bit OS, 8 GB RAM | Jetson Orin Nano Super, 8 GB shared RAM |
+| Recommended computer | Pi 4B or Pi 5, 64-bit OS, 8 GB RAM | Jetson Orin Nano Super, 8 GB shared RAM |
 
 The Pi route is not a slower Jetson route: it is deliberately web-assisted. It
 does not provide the Jetson edition's fast local Granite document workflow.
@@ -56,7 +59,7 @@ three OLED assets. It is not a software-only demo at present.
 
 | Path | Purpose |
 | --- | --- |
-| `unblocker_pi.py` | Raspberry Pi 5, web-assisted controller; no Ollama/Granite requirement |
+| `unblocker_pi.py` | Raspberry Pi 4B / 5, web-assisted controller; no Ollama/Granite requirement |
 | `unblocker_jetson.py` | Jetson controller with local Granite USB retrieval and local QR questions |
 | `unblocker.py` | Preserved original controller; kept for reference and existing installations |
 | `scripts/check_setup.py` | Read-only check for files, credentials and optional local services |
@@ -86,7 +89,7 @@ copies. Use the supplied `*.example` files as templates only.
 
 This is an artist-led hardware project, not a general-purpose package. The
 Jetson edition is the installation build. The Raspberry Pi edition uses the
-preserved web/OpenNotebook path and is intended for a 64-bit Raspberry Pi 5;
-test your own serial ports, printer and OpenNotebook configuration before a
-public event.
+preserved web/OpenNotebook path and is intended for a 64-bit Pi 4B or Pi 5
+with 8 GB RAM. Test your own serial ports, printer and OpenNotebook
+configuration before a public event, especially on a Pi 4B.
 
