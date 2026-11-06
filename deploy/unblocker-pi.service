@@ -1,5 +1,5 @@
 [Unit]
-Description=The Divergence Engine (Raspberry Pi web-assisted edition)
+Description=The Divergence Engine (optional Raspberry Pi web-assisted edition)
 After=network-online.target docker.service
 Wants=network-online.target
 
