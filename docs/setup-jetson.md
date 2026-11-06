@@ -58,7 +58,7 @@ set +a
 
 ## 3. Add web-service keys
 
-Create these two files beside `unblocker_jetson.py` using the provided example
+Create these two files beside `diveng.py` using the provided example
 files as a guide:
 
 ```text
@@ -79,7 +79,7 @@ as the installation if Ollama lives outside its Docker container.
 
 ```bash
 python3 scripts/check_setup.py --build jetson
-python3 unblocker_jetson.py
+python3 diveng.py
 ```
 
 The check does not send a research request or print anything. It only verifies
@@ -87,13 +87,13 @@ the local files, keys and reachable services.
 
 ## Run automatically on boot
 
-Copy [`deploy/unblocker-jetson.service`](../deploy/unblocker-jetson.service)
+Copy [`deploy/diveng.service`](../deploy/diveng.service)
 to `/etc/systemd/system/`, replace every `YOUR_USER` placeholder, then enable
 it after the manual launch works:
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl enable --now unblocker-jetson.service
-sudo systemctl status unblocker-jetson.service --no-pager
+sudo systemctl enable --now diveng.service
+sudo systemctl status diveng.service --no-pager
 ```
 
