@@ -1,0 +1,19 @@
+[Unit]
+Description=The Divergence Engine (Raspberry Pi web-assisted edition)
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=YOUR_USER
+WorkingDirectory=/home/YOUR_USER/The-Divergence-Engine
+EnvironmentFile=/home/YOUR_USER/The-Divergence-Engine/.env
+ExecStartPre=/bin/sleep 15
+ExecStart=/home/YOUR_USER/The-Divergence-Engine/.venv/bin/python3 /home/YOUR_USER/The-Divergence-Engine/unblocker_pi.py
+Restart=on-failure
+RestartSec=10
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
+
