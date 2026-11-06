@@ -1,10 +1,4 @@
-# Direct dependencies of the runtime and demo utilities.
-# Preserve the versions installed on the working Jetson.
-Pillow
-PyMuPDF
-mistralai
-pyserial
-python-escpos
-pyudev
-qrcode
-requests
+# Backwards-compatible install target for the Raspberry Pi / web-assisted build.
+# New installations should choose requirements-pi.txt or requirements-jetson.txt.
+-r requirements-pi.txt
+
