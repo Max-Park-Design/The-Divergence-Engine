@@ -5,27 +5,25 @@ country, a subject and the distance between a researched fact and its image.
 An Arduino reads the controls; Python gathers material, prints a receipt and
 creates a QR page for further reading.
 
-## Choose your build
+## Start with the Jetson build
 
-**You do not need a Jetson to build The Divergence Engine.** A Raspberry Pi 5
-can run the physical, web-connected edition at a much lower cost. Choose the
-Jetson only when you need local Granite models for USB-document retrieval and
-local QR-page questions.
+The core Divergence Engine build is **`diveng.py`**, tested for the Jetson Orin
+Nano Super. It combines internet research with on-device Granite models for
+local USB-PDF indexing, retrieval and QR-page questions.
 
-| | Raspberry Pi 5 — web-assisted | Jetson Orin Nano — local-AI |
+There is also an optional, lower-cost web-assisted route for a 64-bit Raspberry
+Pi 4B or Pi 5 with 8 GB RAM. It is useful when local Granite document retrieval
+is not required; it is not a reduced Jetson build.
+
+| | Jetson Orin Nano — core local-AI build | Raspberry Pi 4B / 5 — optional web-assisted build |
 | --- | --- | --- |
-| Start here | [`docs/setup-pi.md`](docs/setup-pi.md) | [`docs/setup-jetson.md`](docs/setup-jetson.md) |
-| Run | `python3 unblocker_pi.py` | `python3 unblocker_jetson.py` |
-| Research and image search | Internet + Mistral | Internet + Mistral/Brave |
-| USB PDF path | OpenNotebook, configured with your chosen provider | Local Granite indexing and retrieval |
-| QR page | Receipt page and source links | Local Granite questions across active documents and web material |
-| Local Ollama models | Not required | Required |
-| Recommended computer | Pi 5, 64-bit OS, 8 GB RAM | Jetson Orin Nano Super, 8 GB shared RAM |
-
-The Pi route is not a slower Jetson route: it is deliberately web-assisted. It
-does not provide the Jetson edition's fast local Granite document workflow.
-Both builds still need an internet connection for normal web research and image
-retrieval.
+| Start here | [`docs/setup-jetson.md`](docs/setup-jetson.md) | [`docs/setup-pi.md`](docs/setup-pi.md) |
+| Run | `python3 diveng.py` | `python3 unblocker_pi.py` |
+| Research and image search | Internet + Mistral/Brave | Internet + Mistral |
+| USB PDF path | Local Granite indexing and retrieval | OpenNotebook, configured with your chosen provider |
+| QR page | Local Granite questions across active documents and web material | Receipt page and source links |
+| Local Ollama models | Required | Not required |
+| Recommended computer | Jetson Orin Nano Super, 8 GB shared RAM | Pi 4B or Pi 5, 64-bit OS, 8 GB RAM |
 
 ## First run
 
@@ -36,7 +34,8 @@ retrieval.
    cd The-Divergence-Engine
    ```
 
-2. Choose **one** build above and follow its setup guide from start to finish.
+2. Follow the [Jetson setup guide](docs/setup-jetson.md). Use the Pi guide only
+   when you deliberately want the web-assisted alternative.
 
 3. Run its harmless pre-flight check before connecting or mounting hardware.
 
@@ -56,9 +55,8 @@ three OLED assets. It is not a software-only demo at present.
 
 | Path | Purpose |
 | --- | --- |
-| `unblocker_pi.py` | Raspberry Pi 5, web-assisted controller; no Ollama/Granite requirement |
-| `unblocker_jetson.py` | Jetson controller with local Granite USB retrieval and local QR questions |
-| `unblocker.py` | Preserved original controller; kept for reference and existing installations |
+| `diveng.py` | Primary Jetson controller with local Granite USB retrieval and local QR questions |
+| `unblocker_pi.py` | Optional Raspberry Pi 4B / 5 web-assisted controller; no Ollama/Granite requirement |
 | `scripts/check_setup.py` | Read-only check for files, credentials and optional local services |
 | `requirements-pi.txt` | Python packages for the Pi edition |
 | `requirements-jetson.txt` | Python packages for the Jetson edition |
@@ -85,8 +83,7 @@ copies. Use the supplied `*.example` files as templates only.
 ## Status
 
 This is an artist-led hardware project, not a general-purpose package. The
-Jetson edition is the installation build. The Raspberry Pi edition uses the
-preserved web/OpenNotebook path and is intended for a 64-bit Raspberry Pi 5;
-test your own serial ports, printer and OpenNotebook configuration before a
-public event.
+Jetson edition is the core installation build. The Raspberry Pi edition is an
+optional web/OpenNotebook alternative for a 64-bit Pi 4B or Pi 5 with 8 GB
+RAM. Test your own serial ports, printer and services before a public event.
 

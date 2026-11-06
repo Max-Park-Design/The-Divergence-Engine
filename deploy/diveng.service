@@ -1,5 +1,5 @@
 [Unit]
-Description=The Divergence Engine (Jetson local-AI edition)
+Description=The Divergence Engine (Jetson core local-AI edition)
 After=network-online.target docker.service
 Wants=network-online.target
 
@@ -10,7 +10,7 @@ WorkingDirectory=/home/YOUR_USER/The-Divergence-Engine
 # Optional: use this only if you made .env from .env.jetson.example.
 EnvironmentFile=-/home/YOUR_USER/The-Divergence-Engine/.env
 ExecStartPre=/bin/sleep 15
-ExecStart=/home/YOUR_USER/The-Divergence-Engine/.venv/bin/python3 /home/YOUR_USER/The-Divergence-Engine/unblocker_jetson.py
+ExecStart=/home/YOUR_USER/The-Divergence-Engine/.venv/bin/python3 /home/YOUR_USER/The-Divergence-Engine/diveng.py
 Restart=on-failure
 RestartSec=10
 Environment=PYTHONUNBUFFERED=1

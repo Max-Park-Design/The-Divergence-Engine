@@ -3,9 +3,9 @@
 This build keeps the physical controller, printer, USB document flow and QR
 archive, while using Mistral and OpenNotebook for research. It deliberately
 does not require Ollama or the local Granite models used by
-``unblocker_jetson.py``.
+``diveng.py``.
 
-Recommended target: Raspberry Pi 5, 64-bit Raspberry Pi OS, 8 GB RAM.
+Recommended target: Raspberry Pi 4B or Pi 5, 64-bit Raspberry Pi OS, 8 GB RAM.
 See docs/setup-pi.md before first launch.
 """
 
