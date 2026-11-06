@@ -4,9 +4,8 @@
 
 | File | Build | Source and document path |
 | --- | --- | --- |
-| `unblocker_pi.py` | Raspberry Pi 4B / 5 web-assisted | Mistral and OpenNotebook; no local Ollama requirement |
-| `unblocker_jetson.py` | Jetson Orin Nano / local-AI | Local Granite retrieval through Ollama plus the web route |
-| `unblocker.py` | Original controller | Preserved for existing installations and code reference |
+| `diveng.py` | Jetson Orin Nano / core local-AI | Local Granite retrieval through Ollama plus the web route |
+| `unblocker_pi.py` | Raspberry Pi 4B / 5 optional web-assisted | Mistral and OpenNotebook; no local Ollama requirement |
 
 The two supported files are intentionally separate. The controllers have shared
 history but module-level hardware initialisation and mutable state make a casual
