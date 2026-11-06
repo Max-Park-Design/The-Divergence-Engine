@@ -10,7 +10,7 @@ the research and document path, not the Arduino-controlled interface.
 | USB sliders | Bring inserted PDF sources into a run | Five physical slots are mapped in the controller |
 | Thermal printer | Prints the receipt and QR code | Normally appears as `/dev/ttyUSB0` |
 | Three OLEDs | Show the rotary-dial states | Keep the three graphics folders together |
-| Raspberry Pi 5 or Jetson | Runs the Python controller | Choose the build in [choose-your-build.md](choose-your-build.md) |
+| Raspberry Pi 4B / 5 or Jetson | Runs the Python controller | Choose the build in [choose-your-build.md](choose-your-build.md) |
 
 ## Serial connections
 
