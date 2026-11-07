@@ -1,9 +1,6 @@
 # The Divergence Engine
 
-An interactive research printer by Max Park and Jude Pullen. Its dials steer a
-country, a subject and the distance between a researched fact and its image.
-An Arduino reads the controls; Python gathers material, prints a receipt and
-creates a QR page for further reading.
+An interactive research printer by Max Park and Jude Pullen. An AI-enabled research tool which -rather than, as often can happen- returning a definitive answer or another flood of text in reply,  it offers tasty breadcrumbs, scattered clues and disparate ideas that invite people to make recipe ideas and discoveries of their own - and tempt them towards questioning how online knowledge is shaped, and how much more tasty it can become from using well-sourced ingredients, and a little bit of elbow-grease. 
 
 ## Start with the Jetson build
 
